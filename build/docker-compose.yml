@@ -16,7 +16,5 @@ services:
       timeout: 5s
       start_period: 10s
 
-
-
 volumes:
   postgres_data:
