@@ -62,6 +62,7 @@ func main() {
 		Handler: api.Router,
 	}
 
+	//graceful shutdown
 	chanErrors := make(chan error, 1)
 
 	shutdown := make(chan os.Signal, 1)
@@ -109,9 +110,11 @@ func main() {
 		}
 
 		storage.Close()
+
 		log.Info(InfoDbClosed)
 
 		log.Info("shutdown completed")
+
 	}
 
 }

@@ -14,7 +14,7 @@ const (
 	AgeAPI         = "https://api.agify.io/?name="
 	GenderAPI      = "https://api.genderize.io/?name="
 	NationalityAPI = "https://api.nationalize.io/?name="
-	timeout        = 10 * time.Second
+	timeout        = 60 * time.Second
 )
 
 type Enricher struct {
@@ -44,15 +44,17 @@ func (e *Enricher) Enrich(ctx context.Context, person *models.Person) (*models.P
 	go e.fetchNationality(ctx, person.Name, &wg, nationalityResult, errChan)
 
 	wg.Wait()
+
 	close(errChan)
 	close(ageResult)
 	close(genderResult)
 	close(nationalityResult)
 
-	err, closed := <-errChan
-	if err != nil && !closed {
+	err, opened := <-errChan
+	if err != nil && !opened {
 		return nil, fmt.Errorf("failed to enrich person data: %w", err)
 	}
+
 	person.Age = <-ageResult
 	person.Gender = <-genderResult
 	person.Nationality = <-nationalityResult

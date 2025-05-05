@@ -1,4 +1,8 @@
 Для запуска приложения:
 
-- `docker compose -f ./build/docker-compose.yml up --remove-orphans`
+ - $ go mod download
+ - Создать в корнеовй папке файл .env
+ - заполнить его следующимим переменными:
+    ```
+    
 

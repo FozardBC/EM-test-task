@@ -1,27 +1,27 @@
 INSERT INTO people (name, surname, patronymic, age, gender, nationality) VALUES
 
-('Ivan', 'Ivanov', 'Ivanovich', 25, 'M', 'RU'),
-('Petr', 'Petrov', 'Petrovich', 30, 'M', 'RU'),
-('John', 'Smith', 'Michael', 28, 'M', 'EU'),
-('Oleksiy', 'Kovalenko', 'Mykolayovych', 35, 'M', 'UA'),
-('Hans', 'Müller', 'Friedrich', 40, 'M', 'EU'),
+('Ivan', 'Ivanov', 'Ivanovich', 25, 'male', 'RU'),
+('Petr', 'Petrov', 'Petrovich', 30, 'male', 'RU'),
+('John', 'Smith', 'Michael', 28, 'male', 'EU'),
+('Oleksiy', 'Kovalenko', 'Mykolayovych', 35, 'male', 'UA'),
+('Hans', 'Müller', 'Friedrich', 40, 'male', 'EU'),
 
 
-('Anna', 'Ivanova', 'Sergeevna', 22, 'F', 'RU'),
-('Maria', 'Petrova', 'Dmitrievna', 27, 'F', 'RU'),
-('Emily', 'Johnson', 'Anne', 29, 'F', 'EU'),
-('Olena', 'Shevchenko', 'Ivanivna', 33, 'F', 'UA'),
-('Sophie', 'Schmidt', 'Marie', 38, 'F', 'EU'),
+('Anna', 'Ivanova', 'Sergeevna', 22, 'female', 'RU'),
+('Maria', 'Petrova', 'Dmitrievna', 27, 'female', 'RU'),
+('Emily', 'Johnson', 'Anne', 29, 'female', 'EU'),
+('Olena', 'Shevchenko', 'Ivanivna', 33, 'female', 'UA'),
+('Sophie', 'Schmidt', 'Marie', 38, 'female', 'EU'),
 
-('Dmitry', 'Sidorov', 'Alexandrovich', 18, 'M', 'RU'),
-('Natalia', 'Volkova', 'Olegovna', 45, 'F', 'RU'),
-('William', 'Brown', 'James', 50, 'M', 'EU'),
-('Yana', 'Melnyk', 'Vasylivna', 19, 'F', 'UA'),
-('Klaus', 'Schneider', 'Wolfgang', 42, 'M', 'EU'),
+('Dmitry', 'Sidorov', 'Alexandrovich', 18, 'male', 'RU'),
+('Natalia', 'Volkova', 'Olegovna', 45, 'female', 'RU'),
+('William', 'Brown', 'James', 50, 'male', 'EU'),
+('Yana', 'Melnyk', 'Vasylivna', 19, 'female', 'UA'),
+('Klaus', 'Schneider', 'Wolfgang', 42, 'male', 'EU'),
 
 
-('Alex', 'Taylor', '', 20, 'M', 'EU'),  
-('Svetlana', 'Kuznetsova', '', 31, 'F', 'RU'),  
-('Mykola', 'Boyko', 'Vasylovych', 17, 'M', 'UA'), 
-('Olga', 'Morozova', 'Pavlivna', 65, 'F', 'UA'), 
-('Thomas', 'Anderson', 'Neo', 99, 'M', 'EU');  
+('Alex', 'Taylor', '', 20, 'male', 'EU'),  
+('Svetlana', 'Kuznetsova', '', 31, 'female', 'RU'),  
+('Mykola', 'Boyko', 'Vasylovych', 17, 'male', 'UA'), 
+('Olga', 'Morozova', 'Pavlivna', 65, 'female', 'UA'), 
+('Thomas', 'Anderson', 'Neo', 99, 'male', 'EU');  

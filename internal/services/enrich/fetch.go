@@ -20,9 +20,9 @@ func (e *Enricher) fetchAge(ctx context.Context, name string, wg *sync.WaitGroup
 
 	e.log.Debug("request to fetch age", "name", name, "url", url)
 
-	if err := e.fetchAPI(ctx, url, &result); err != nil {
+	if err := e.fetchAPI(url, &result); err != nil {
 		e.log.Error("failed to fetch age", "error", err, "name", name)
-		errChan <- fmt.Errorf("age API: %w", err)
+		errChan <- fmt.Errorf("error age API: %w", err)
 		return
 	}
 
@@ -40,9 +40,9 @@ func (e *Enricher) fetchGender(ctx context.Context, name string, wg *sync.WaitGr
 
 	e.log.Debug("request to fetch gender", "name", name, "url", url)
 
-	if err := e.fetchAPI(ctx, url, &result); err != nil {
+	if err := e.fetchAPI(url, &result); err != nil {
 		e.log.Error("failed to fetch age", "error", err, "name", name)
-		errChan <- fmt.Errorf("age API err: %w", err)
+		errChan <- fmt.Errorf("error age API err: %w", err)
 		return
 	}
 
@@ -65,9 +65,9 @@ func (e *Enricher) fetchNationality(ctx context.Context, name string, wg *sync.W
 
 	e.log.Debug("request to fetch nationality", "name", name, "url", url)
 
-	if err := e.fetchAPI(ctx, url, &result); err != nil {
+	if err := e.fetchAPI(url, &result); err != nil {
 		e.log.Error("failed to fetch nationality", "error", err, "name", name)
-		errChan <- fmt.Errorf("nationality API err: %w", err)
+		errChan <- fmt.Errorf("error nationality API err: %w", err)
 		return
 	}
 
@@ -75,7 +75,7 @@ func (e *Enricher) fetchNationality(ctx context.Context, name string, wg *sync.W
 		err := errors.New("len of nationality less 1")
 
 		e.log.Error("failed to fetch nationality", "error", err, "name", name)
-		errChan <- fmt.Errorf("nationality API err: %w", err)
+		errChan <- fmt.Errorf("error nationality API err: %w", err)
 		return
 	}
 
@@ -84,8 +84,8 @@ func (e *Enricher) fetchNationality(ctx context.Context, name string, wg *sync.W
 	resultChan <- result.Countries[0].CountryID
 }
 
-func (e *Enricher) fetchAPI(ctx context.Context, url string, target interface{}) error {
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+func (e *Enricher) fetchAPI(url string, target interface{}) error {
+	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		e.log.Error("can't get request")
 
