@@ -1,0 +1,281 @@
+basePath: /api/v1/
+definitions:
+  create.Request:
+    properties:
+      name:
+        example: Alexander
+        maxLength: 50
+        minLength: 2
+        type: string
+      patronymic:
+        description: required
+        example: Petrovich
+        maxLength: 50
+        minLength: 2
+        type: string
+      surname:
+        description: required
+        example: Sidorov
+        maxLength: 50
+        minLength: 2
+        type: string
+    required:
+    - name
+    - surname
+    type: object
+  create.Response:
+    properties:
+      id:
+        type: integer
+      response:
+        $ref: '#/definitions/response.Response'
+    type: object
+  list.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Person'
+        type: array
+      meta:
+        $ref: '#/definitions/types.Meta'
+      response:
+        $ref: '#/definitions/response.Response'
+    type: object
+  models.Person:
+    properties:
+      age:
+        type: integer
+      gender:
+        type: string
+      name:
+        type: string
+      nationality:
+        type: string
+      patronymic:
+        type: string
+      surname:
+        type: string
+    type: object
+  response.Response:
+    description: all respones based on this and can overwrite this
+    properties:
+      error:
+        type: string
+      status:
+        type: string
+    type: object
+  types.Meta:
+    properties:
+      limit:
+        type: integer
+      next:
+        type: boolean
+      offset:
+        type: integer
+      total:
+        type: integer
+    type: object
+  update.Request:
+    properties:
+      age:
+        type: integer
+      gender:
+        type: string
+      name:
+        maxLength: 50
+        minLength: 2
+        type: string
+      nationality:
+        type: string
+      patronymic:
+        maxLength: 50
+        minLength: 2
+        type: string
+      surname:
+        maxLength: 50
+        minLength: 2
+        type: string
+    type: object
+  update.Response:
+    properties:
+      person:
+        $ref: '#/definitions/models.Person'
+      respone:
+        $ref: '#/definitions/response.Response'
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Service for test task Effective mobile
+  title: Test-task
+  version: "1.0"
+paths:
+  /people:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the user by id
+      operationId: create
+      parameters:
+      - description: Person ID
+        in: path
+        name: input
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "204":
+          description: No Content
+        "400":
+          description: invalid id
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: Delete
+      tags:
+      - people
+    get:
+      consumes:
+      - application/json
+      description: get accounts by filters
+      parameters:
+      - description: num of page
+        example: 1
+        in: query
+        name: page
+        type: integer
+      - description: limit wrties on page
+        example: 3
+        in: query
+        name: limit
+        type: integer
+      - description: person filter by name
+        example: oleg
+        in: query
+        name: name
+        type: string
+      - description: person filter by surname
+        example: invanov
+        in: query
+        name: surname
+        type: string
+      - description: person filter by patronymic
+        example: petrovich
+        in: query
+        name: patronymic
+        type: string
+      - description: person filter by exact age
+        example: 32
+        in: query
+        name: age
+        type: integer
+      - description: person filter by min age
+        example: 10
+        in: query
+        name: minage
+        type: integer
+      - description: person filter by max age
+        example: 35
+        in: query
+        name: maxage
+        type: integer
+      - description: person filter by gender
+        example: male
+        in: query
+        name: gender
+        type: string
+      - description: person filter by nationality
+        example: RU
+        in: query
+        name: nationality
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/list.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: List poeple
+      tags:
+      - poeple
+    patch:
+      consumes:
+      - application/json
+      description: |-
+        Update any field of person
+        Need at least one field to update
+      operationId: update
+      parameters:
+      - description: Person field data to update
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/update.Request'
+      - description: id of person to update
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK - Returns a person fields with update
+          schema:
+            $ref: '#/definitions/update.Response'
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal error
+      summary: Update person data
+      tags:
+      - people
+    post:
+      consumes:
+      - application/json
+      description: Creating, enriching and saving new user
+      operationId: create
+      parameters:
+      - description: Person basic info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/create.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/create.Response'
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal error
+      summary: Create new user
+      tags:
+      - people
+swagger: "2.0"
