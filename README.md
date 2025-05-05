@@ -1,22 +1,22 @@
-###Для запуска БД:
-    Необходимо:
-    - docker
-    - postgres image
+## Для запуска БД:
+Необходимо:
+- docker
+- postgres image
 
-    $ docker pull postgres
+$ docker pull postgres
 
-    для установки образа postgres
+для установки образа postgres
 
-    $ docker compose up -d --remove-orphans
+$ docker compose up -d --remove-orphans
 
-    для запуска БД - localhost:5432
+для запуска БД - localhost:5432
 
-###Для запуска приложения:
+## Для запуска приложения:
 
-    - Создать в корнеовй папке файл .env
-    - заполнить его следующимим переменными:
+- Создать в корнеовй папке файл .env
+- заполнить его следующимим переменными:
 
-    ```
+  ```
     #APP
     LOG_MODE=dev #debug | dev
 
@@ -26,18 +26,18 @@
 
     ### DATABASE
     DB_CONN_STRING=postgresql://[username]:[password]@[url]/test-task-db?sslmode=disable
-    ```
+  ```
 
-    ####С установленым go 
+### С установленым go 
 
     - $ go mod download
     - $ go build -o ./cmd/test-task ./cmd/test-task 
     - $ ./cmd/test-task/test-task 
 
-    ####Запуск бинарного файла
+### Запуск бинарного файла
 
     - $ ./bin
 
-Документация:
+### Документация:
 
 - http://urlPath/api/v1/swagger/index.html
